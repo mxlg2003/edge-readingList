@@ -1,0 +1,28 @@
+@media (prefers-color-scheme: light) {
+    a:hover {
+      color: #61dafb;
+    }
+  }
+  
+  main {
+    width: 100%;
+    height: 100%;
+    /* text-align: center; */
+    /* border-radius: 15px; */
+    /* background-color: #3b3b3b; */
+    display: grid;
+    grid-gap: 5px;
+    grid-template-rows: 1fr auto; /* 上下两个区域的高度比例 */
+  }
+  
+  main > #content {
+    overflow: auto;
+    padding: 0 5px;
+  }
+  
+  main > #guide {
+    /* background-color: #e0e0e0; */
+    padding: 5px;
+    display: flex;
+    justify-content:space-between
+  }

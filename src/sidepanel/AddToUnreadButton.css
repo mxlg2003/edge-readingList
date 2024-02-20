@@ -1,0 +1,14 @@
+.addToUnreadButton {
+  padding: 10px 15px;
+  border-radius:var(--border-radius);
+  color: var(--addButton-color);
+  background-color: var(--addButton-bg);
+  border: none;
+}
+.addToUnreadButton:hover {
+  background-color: var(--addButton-bg-hover);
+}
+.addToUnreadButton:disabled {
+  color: #545454;
+  background-color: var(--addButton-bg-disabled);
+}

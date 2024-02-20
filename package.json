@@ -1,0 +1,39 @@
+{
+  "name": "Reading list",
+  "displayName": "Reading list",
+  "version": "1.0.0",
+  "author": "mengxl",
+  "description": "This extension tool can help collect many pages for later reading.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "Reading list",
+    "ReadList"
+  ],
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "fmt": "prettier --write '**/*.{jsx,js,json,css,scss,md}'"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.0",
+    "ahooks": "^3.7.9",
+    "antd": "^5.13.3",
+    "date-fns": "^3.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "2.0.0-beta.23",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "glob": "^10.3.10",
+    "prettier": "^3.2.4",
+    "vite": "^4.5.2"
+  }
+}
