@@ -31,6 +31,13 @@ const Popup = () => {
         setCurrentUrl(url)
       }
     })
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      var currentUrl = tabs[0].url;
+      const url = currentUrl || ''
+      setCurrentUrl(url)
+    });
+
   }, [])
 
   const isHttpOrHttps = (url) => url.startsWith('http://') || url.startsWith('https://')
