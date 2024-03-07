@@ -9,8 +9,8 @@ const Popup = () => {
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
-    // 从 storage.local 中获取页面列表
-    chrome.storage.local.get('pages', (result) => {
+    // 从 storage.sync 中获取页面列表
+    chrome.storage.sync.get('pages', (result) => {
       setPages(result.pages || [])
     })
 
@@ -43,7 +43,7 @@ const Popup = () => {
   const isHttpOrHttps = (url) => url.startsWith('http://') || url.startsWith('https://')
 
   const updatePages = (newPages) => {
-    chrome.storage.local.set({ pages: newPages })
+    chrome.storage.sync.set({ pages: newPages })
   }
 
   const findPage = (url) => pages.find((page) => page.url === url)
