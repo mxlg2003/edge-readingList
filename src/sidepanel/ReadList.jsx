@@ -3,74 +3,54 @@ import { formatDistanceToNow } from 'date-fns'
 import { zhCN, enUS } from 'date-fns/locale'
 import { Button } from 'antd'
 import { CheckCircleFilled, CloseOutlined } from '@ant-design/icons'
+import getMessage from './i18n.js'
 
 const ReadList = ({ pages, handleCancelRead, handleDelete, handleOpenUrl, searchTerm }) => {
   const [lang, setLang] = useState('enUS')
   const [size, setSize] = useState('small') // default is 'middle'
 
-  const filteredPages = pages.filter(
-    (page) =>
-      page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      page.url.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
-
+  const filteredPages = pages.filter((page) => page.title.toLowerCase().includes(searchTerm.toLowerCase()) || page.url.toLowerCase().includes(searchTerm.toLowerCase()))
   useEffect(() => {
-    // 获取用户的 UI 语言
     const userLanguage = chrome.i18n.getUILanguage()
-
-    // 根据 UI 语言设置 lang 状态
-    if (userLanguage.startsWith('zh')) {
-      setLang('zhCN')
-    } else {
-      setLang('enUS')
-    }
+    setLang(userLanguage.startsWith('zh') ? 'zhCN' : 'enUS')
   }, [])
+  const formatLocale = lang === 'zhCN' ? zhCN : enUS
 
-  useEffect(() => {
-    pages.map((page) => {
-      console.log('🚀 ~ pages.map ~ page:', page)
-    })
-  }, [])
-  return (
-    <div className="readList">
+  return (<div className="readList">
       <ul>
-        <h3>Pages you've read</h3>
-        {filteredPages.map((page) => (
-          <li key={page.url} onClick={() => handleOpenUrl(page.url)}>
+        <h3>{getMessage('readed')}</h3>
+        {filteredPages.map((page) => (<li key={page.url} onClick={() => handleOpenUrl(page.url)}>
             <span className="favIcon">
               <img src={page.favIconUrl} alt={page.title} />
             </span>
 
-            <span className="page-title">{page.title}</span>
+            <span className="page-title" title={page.title}>{page.title}</span>
             <span className="time-ago">
-              {formatDistanceToNow(new Date(page.creationTime), { locale: enUS, addSuffix: true })}
+              {formatDistanceToNow(new Date(page.creationTime), { locale: formatLocale, addSuffix: true })}
             </span>
             <div className="button-group">
               <Button
                 onPointerDown={() => handleCancelRead(page.url)}
                 style={{ padding: 0 }}
-                icon={<CheckCircleFilled style={{ fontSize: '12px'}} />}
+                icon={<CheckCircleFilled style={{ fontSize: '12px' }} />}
                 type="text"
                 size={size}
                 shape="circle"
-                title="Add to Unread"
+                title={getMessage('addtoUnread')}
               />
               <Button
                 onPointerDown={() => handleDelete(page.url)}
                 style={{ padding: 0 }}
-                icon={<CloseOutlined style={{ fontSize: '12px'}} />}
+                icon={<CloseOutlined style={{ fontSize: '12px' }} />}
                 type="text"
                 size={size}
                 shape="circle"
-                title="Remove"
+                title={getMessage('remove')}
               />
-              {/* <button onClick={() => handleOpenUrl(page.url)}>Open</button> */}
             </div>
-          </li>
-        ))}
+          </li>))}
       </ul>
-    </div>
-  )
+    </div>)
 }
 
 export default ReadList

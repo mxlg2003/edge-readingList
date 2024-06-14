@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "阅读列表"
+  },
+  "extShortName": {
+    "message": "阅读列表"
+  },
+  "extDescription": {
+    "message": "这个扩展工具可以在侧边栏中帮助收藏很多用于稍后阅读的页面。"
+  },
+  "actionTitle": {
+    "message": "打开阅读列表"
+  },
+  "readed": {
+    "message": "已读"
+  },
+  "unreaded": {
+    "message": "未读"
+  },
+  "addtoUnread": {
+    "message": "添加到未读"
+  },
+  "remove": {
+    "message": "移除"
+  },
+  "search": {
+    "message": "搜索..."
+  },
+  "markAsRead": {
+    "message": "标记为已读"
+  }
+}

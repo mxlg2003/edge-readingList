@@ -2,11 +2,12 @@ import { defineManifest } from '@crxjs/vite-plugin'
 import packageData from '../package.json' assert { type: 'json' }
 
 export default defineManifest({
-  name: packageData.name,
-  description: packageData.description,
+  name: '__MSG_extName__',
+  description: '__MSG_extDescription__',
   version: packageData.version,
   manifest_version: 3,
   author: packageData.author,
+  default_locale: "en",
   icons: {
     16: 'img/logo-16.png',
     32: 'img/logo-32.png',
@@ -14,7 +15,7 @@ export default defineManifest({
     128: 'img/logo-128.png',
   },
   action: {
-    default_title: '打开readingList',
+    default_title: '__MSG_actionTitle__',
     default_icon: 'img/logo-48.png',
   },
   background: {

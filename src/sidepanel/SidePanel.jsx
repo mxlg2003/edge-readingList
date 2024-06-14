@@ -3,6 +3,8 @@ import UnreadList from './UnreadList'
 import ReadList from './ReadList'
 import AddToUnreadButton from './AddToUnreadButton'
 import './SidePanel.css'
+import getMessage from './i18n.js'
+
 const Popup = () => {
   const [pages, setPages] = useState([])
   const [currentUrl, setCurrentUrl] = useState('')
@@ -33,10 +35,10 @@ const Popup = () => {
     })
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      var currentUrl = tabs[0].url;
+      var currentUrl = tabs[0].url
       const url = currentUrl || ''
       setCurrentUrl(url)
-    });
+    })
 
   }, [])
 
@@ -54,9 +56,10 @@ const Popup = () => {
 
       if (existingPage) {
         // 如果当前页面已存在，更新为未读状态
-        const newPages = pages.map((page) =>
-          page.url === currentUrl ? { ...page, hasBeenRead: !page.hasBeenRead } : page,
-        )
+        const newPages = pages.map((page) => page.url === currentUrl ? {
+          ...page,
+          hasBeenRead: !page.hasBeenRead,
+        } : page)
         setPages(newPages)
         updatePages(newPages)
       } else {
@@ -100,9 +103,7 @@ const Popup = () => {
     console.log('🚀 ~ handleCancelRead ~ url:', url)
     // 阻止 PointerEvent 冒泡
     event.stopPropagation()
-    const newPages = pages.map((page) =>
-      page.url === url ? { ...page, hasBeenRead: false } : page,
-    )
+    const newPages = pages.map((page) => page.url === url ? { ...page, hasBeenRead: false } : page)
     setPages(newPages)
     updatePages(newPages)
   }
@@ -129,39 +130,38 @@ const Popup = () => {
     })
   }
 
-  return (
-    <main>
-      <div id="content">
-        <UnreadList
-          pages={pages.filter((page) => !page.hasBeenRead)}
-          handleMarkAsRead={handleMarkAsRead}
-          handleDelete={handleDelete}
-          handleOpenUrl={handleOpenUrl}
-          searchTerm={searchTerm} // 传递搜索状态
-        />
-        <ReadList
-          pages={pages.filter((page) => page.hasBeenRead)}
-          handleCancelRead={handleCancelRead}
-          handleDelete={handleDelete}
-          handleOpenUrl={handleOpenUrl}
-          searchTerm={searchTerm} // 传递搜索状态
-        />
-      </div>
-      <div id="guide">
-        <AddToUnreadButton
-          url={currentUrl}
-          onClick={handleAddToUnread}
-          isPageUnread={pages.some((page) => page.url === currentUrl && !page.hasBeenRead)}
-        />
-        <input
-          type="search"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-    </main>
-  )
+
+  return (<main>
+    <div id="content">
+      <UnreadList
+        pages={pages.filter((page) => !page.hasBeenRead)}
+        handleMarkAsRead={handleMarkAsRead}
+        handleDelete={handleDelete}
+        handleOpenUrl={handleOpenUrl}
+        searchTerm={searchTerm} // 传递搜索状态
+      />
+      <ReadList
+        pages={pages.filter((page) => page.hasBeenRead)}
+        handleCancelRead={handleCancelRead}
+        handleDelete={handleDelete}
+        handleOpenUrl={handleOpenUrl}
+        searchTerm={searchTerm} // 传递搜索状态
+      />
+    </div>
+    <div id="guide">
+      <AddToUnreadButton
+        url={currentUrl}
+        onClick={handleAddToUnread}
+        isPageUnread={pages.some((page) => page.url === currentUrl && !page.hasBeenRead)}
+      />
+      <input
+        type="search"
+        placeholder={getMessage('search')}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
+  </main>)
 }
 
 export default Popup

@@ -1,0 +1,32 @@
+{
+  "extName": {
+    "message": "Reading List"
+  },
+  "extShortName": {
+    "message": "Reading List"
+  },
+  "extDescription": {
+    "message": "This extension tool can help collect many pages for later reading."
+  },
+  "actionTitle": {
+    "message": "Open Reading List"
+  },
+  "readed": {
+    "message": "Pages you've read"
+  },
+  "unreaded": {
+    "message": "Unread"
+  },
+  "addtoUnread": {
+    "message": "Add to Unread"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "search": {
+    "message": "Search..."
+  },
+  "markAsRead": {
+    "message": "Mark as Read"
+  }
+}

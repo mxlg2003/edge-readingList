@@ -1,7 +1,7 @@
 {
   "name": "Reading list",
   "displayName": "Reading list",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "mengxl",
   "description": "This extension tool can help collect many pages for later reading.",
   "type": "module",
