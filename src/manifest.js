@@ -9,14 +9,11 @@ export default defineManifest({
   author: packageData.author,
   default_locale: "en",
   icons: {
-    16: 'img/logo-16.png',
-    32: 'img/logo-32.png',
-    48: 'img/logo-48.png',
     128: 'img/logo-128.png',
   },
   action: {
     default_title: '__MSG_actionTitle__',
-    default_icon: 'img/logo-48.png',
+    default_icon: 'img/logo-128.png',
   },
   background: {
     service_worker: 'src/background/index.js',
@@ -34,7 +31,7 @@ export default defineManifest({
   },
   web_accessible_resources: [
     {
-      resources: ['img/logo-16.png', 'img/logo-32.png', 'img/logo-48.png', 'img/logo-128.png'],
+      resources: ['img/logo-128.png'],
       matches: [],
     },
   ],
